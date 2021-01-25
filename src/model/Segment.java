@@ -36,18 +36,16 @@ public class Segment {
 		this.arrivee = arrivee;
 	}
 	public Segment(int distance, ArrayList<Obstacle> obstacles, PointDePassage depart, PointDePassage arrivee) {
-		super();
 		this.distance = distance;
 		this.obstacles = obstacles;
 		this.depart = depart;
 		this.arrivee = arrivee;
 	}
 	public Segment(int distance, PointDePassage depart, PointDePassage arrivee) {
-		super();
 		this.distance = distance;
 		this.depart = depart;
 		this.arrivee = arrivee;
-		this.obstacles = new ArrayList<Obstacle> ();
+		this.obstacles = new ArrayList<> ();
 		
 	}
 	

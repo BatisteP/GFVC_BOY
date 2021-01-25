@@ -7,7 +7,7 @@ public class Challenge {
 	private boolean teamPlay;
 	private int teamSize;
 	private String description;
-	private ArrayList<PointDePassage> pointsDePassages;
+	private ArrayList<PointDePassage> points;
 	private ArrayList<Segment> segments;
 	private PointDePassage depart;
 	public PointDePassage getDepart() {
@@ -26,12 +26,11 @@ public class Challenge {
 
 	public Challenge(int id, boolean teamPlay, int teamSize, String description, ArrayList<PointDePassage> pointsDePassages,
 			ArrayList<Segment> segments, PointDePassage pdp) {
-		super();
 		this.id = id;
 		this.teamPlay = teamPlay;
 		this.teamSize = teamSize;
 		this.description = description;
-		this.pointsDePassages = pointsDePassages;
+		this.points = pointsDePassages;
 		this.segments = segments;
 		this.depart = pdp;
 	}
@@ -40,12 +39,14 @@ public class Challenge {
 	
 	
 	public Challenge(int id, boolean teamPlay, int teamSize, String description, PointDePassage pdp) {
-		super();
 		this.id = id;
 		this.teamPlay = teamPlay;
 		this.teamSize = teamSize;
 		this.description = description;
 		this.depart = pdp;
+		this.points = new ArrayList<>();
+		this.segments = new ArrayList<>();
+		
 	}
 	
 
@@ -59,8 +60,8 @@ public class Challenge {
 	
 	public void addSegment(Segment seg) {
 		segments.add(seg);
-		pointsDePassages.add(seg.getArrivee());
-		pointsDePassages.add(seg.getDepart());
+		points.add(seg.getArrivee());
+		points.add(seg.getDepart());
 		
 	}
 
@@ -86,10 +87,10 @@ public class Challenge {
 		this.description = description;
 	}
 	public ArrayList<PointDePassage> getPointsDePassages() {
-		return pointsDePassages;
+		return points;
 	}
 	public void setPointsDePassages(ArrayList<PointDePassage> pointsDePassages) {
-		this.pointsDePassages = pointsDePassages;
+		this.points = pointsDePassages;
 	}
 	public ArrayList<Segment> getSegments() {
 		return segments;

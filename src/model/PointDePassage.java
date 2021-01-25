@@ -16,8 +16,8 @@ public class PointDePassage {
 	public void setChoixLent(Segment choixLent) {
 		this.choixLent = choixLent;
 	}
-	public PointDePassage(Segment choixRapide, Segment choixLent) {
-		super();
+	public PointDePassage(int id,Segment choixRapide, Segment choixLent) {
+		this.id = id;
 		this.choixRapide = choixRapide;
 		this.choixLent = choixLent;
 	}
