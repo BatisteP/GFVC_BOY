@@ -3,12 +3,13 @@ package model;
 import java.util.ArrayList;
 
 public class Challenge {
-	boolean teamPlay;
-	int teamSize;
-	String description;
-	ArrayList<PointDePassage> pointsDePassages;
-	ArrayList<Segment> segments;
-	PointDePassage depart;
+	private int id;
+	private boolean teamPlay;
+	private int teamSize;
+	private String description;
+	private ArrayList<PointDePassage> pointsDePassages;
+	private ArrayList<Segment> segments;
+	private PointDePassage depart;
 	public PointDePassage getDepart() {
 		return depart;
 	}
@@ -23,9 +24,10 @@ public class Challenge {
 
 
 
-	public Challenge(boolean teamPlay, int teamSize, String description, ArrayList<PointDePassage> pointsDePassages,
+	public Challenge(int id, boolean teamPlay, int teamSize, String description, ArrayList<PointDePassage> pointsDePassages,
 			ArrayList<Segment> segments, PointDePassage pdp) {
 		super();
+		this.id = id;
 		this.teamPlay = teamPlay;
 		this.teamSize = teamSize;
 		this.description = description;
@@ -37,14 +39,24 @@ public class Challenge {
 	
 	
 	
-	public Challenge(boolean teamPlay, int teamSize, String description, PointDePassage pdp) {
+	public Challenge(int id, boolean teamPlay, int teamSize, String description, PointDePassage pdp) {
 		super();
+		this.id = id;
 		this.teamPlay = teamPlay;
 		this.teamSize = teamSize;
 		this.description = description;
 		this.depart = pdp;
 	}
+	
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	public void addSegment(Segment seg) {
 		segments.add(seg);
 		pointsDePassages.add(seg.getArrivee());
