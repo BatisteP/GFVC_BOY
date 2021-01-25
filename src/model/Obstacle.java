@@ -1,6 +1,7 @@
 package model;
 
 public class Obstacle {
+	private int id;
 	private String description;
 	
 	public Obstacle(String description) {

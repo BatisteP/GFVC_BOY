@@ -1,6 +1,7 @@
 package model;
 
 public class PointDePassage {
+	private int id;
 	Segment choixRapide;
 	Segment choixLent;
 	public Segment getChoixRapide() {
