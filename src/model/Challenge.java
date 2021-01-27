@@ -2,17 +2,33 @@ package model;
 
 import java.util.ArrayList;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table
 public class Challenge {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO) 	
 	private int id;
 	private boolean teamPlay;
 	private int teamSize;
 	private String description;
 	private ArrayList<PointDePassage> points;
 	private ArrayList<Segment> segments;
-	private PointDePassage depart;
-	public PointDePassage getDepart() {
+	
+public Challenge() {
+		
+	}
+	//private PointDePassage depart;
+	/*public PointDePassage getDepart() {
 		return depart;
 	}
+	
 
 
 
@@ -20,7 +36,7 @@ public class Challenge {
 	public void setDepart(PointDePassage depart) {
 		this.depart = depart;
 	}
-
+*/
 
 
 
@@ -32,7 +48,7 @@ public class Challenge {
 		this.description = description;
 		this.points = pointsDePassages;
 		this.segments = segments;
-		this.depart = pdp;
+		//this.depart = pdp;
 	}
 	
 	
@@ -43,7 +59,7 @@ public class Challenge {
 		this.teamPlay = teamPlay;
 		this.teamSize = teamSize;
 		this.description = description;
-		this.depart = pdp;
+		//this.depart = pdp;
 		this.points = new ArrayList<>();
 		this.segments = new ArrayList<>();
 		
