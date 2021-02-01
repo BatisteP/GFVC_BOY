@@ -49,15 +49,15 @@ public class Player {
 	@Produces("text/json")
 	public String modifyInfos(@PathParam ("login") String login, @QueryParam("currentpassword") String currpassword,@QueryParam("newpassword") String password, @QueryParam("lastname") String lastname, @QueryParam("firstname") String firstname) throws SecurityException, IllegalStateException, NotSupportedException, SystemException, NamingException, RollbackException, HeuristicMixedException, HeuristicRollbackException {
 		User u2 = new User(login, password, lastname, firstname, false);
-		//User user = u.find(login);
-		/*
+		User user = u.find(login);
+		
 		if (user == null) {
 			return "user doesn't exist!";
 		};
 		if (!user.getPassword().equals(currpassword)) {
 			return "wrong password";
 		};
-		*/
+		u2.setIsAdmin(user.getIsAdmin());
 		u.edit(u2);
 		String jsons="";
 		ObjectMapper mapper = new ObjectMapper();
