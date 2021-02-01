@@ -95,6 +95,7 @@ public abstract class DAOAbstractFacade<T> {
 		UserTransaction transaction = (UserTransaction)new InitialContext().lookup("java:comp/UserTransaction");
 		transaction.begin();
 		getEntityManager().merge(entite);
+		//getEntityManager().flush();
 		transaction.commit();
 	}
 
