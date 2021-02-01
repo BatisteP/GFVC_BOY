@@ -10,6 +10,8 @@ public class Suggestion {
 	String login;
 	String description;
 	
+	public Suggestion() {}
+	
 	public Suggestion(String login, String description) {
 		super();
 		this.login=login;
