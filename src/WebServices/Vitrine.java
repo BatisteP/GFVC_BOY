@@ -14,6 +14,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import dao.DAOChallenge;
 import dao.DAOUser;
 import model.Challenge;
@@ -52,15 +55,18 @@ public class Vitrine {
 	@Produces("text/json")
 	public String getChallenges (){
 			String jsons="";
-		
+			ObjectMapper mapper = new ObjectMapper();
 		
 		
 			ArrayList<Challenge> list =  a.findAll();
 			for (Challenge a : list) {
-				jsons += "\n \"id du challenge\"" + "\""+a.getId() +"\"";
-				jsons += "\n \"description : \"" + "\""+a.getDescription() +"\"";
-				jsons += "\n \"nombre de gens\"" + "\""+a.getTeamSize() +"\"";
-				jsons += "\n";
+				try {
+					  jsons += mapper.writeValueAsString(a);
+					  //System.out.println("ResultingJSONstring = " + json);
+					  //System.out.println(json);
+					} catch (JsonProcessingException e) {
+					   e.printStackTrace();
+					}
 			}
 		
 		return jsons;
@@ -74,12 +80,16 @@ public class Vitrine {
 	@Path( "newuser" )
 	@Produces("text/json")
 	public String newUser (
-			@QueryParam("login") String login, @QueryParam("password") String password, @QueryParam("lastname") String lastname, @QueryParam("firstname") String firstname) {
+			@QueryParam("login") String login, @QueryParam("password") String password, @QueryParam("lastname") String lastname, @QueryParam("firstname") String firstname, @QueryParam("isAdmin") String isAdmin) {
 
 		try {
-			
-			
-		u.create(new User(login,password,lastname,firstname));
+			Boolean flag;
+		if (isAdmin.equals("yes")) {
+			flag = true;
+		}
+		else {flag =false;}
+		
+		u.create(new User(login,password,lastname,firstname,flag));
 		} catch (NamingException | NotSupportedException | SystemException | SecurityException | IllegalStateException | RollbackException | HeuristicMixedException | HeuristicRollbackException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
