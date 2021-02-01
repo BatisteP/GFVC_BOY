@@ -5,6 +5,7 @@
 		<class>model.Challenge</class>
 		<class>model.Obstacle</class>
 		<class>model.User</class>
+		<class>model.Suggestion</class>
 		  <properties>
          	<property name="eclipselink.ddl-generation" value="create-tables"/>
       </properties>
