@@ -24,42 +24,37 @@ public class Challenge {
 public Challenge() {
 		
 	}
-	//private PointDePassage depart;
-	/*public PointDePassage getDepart() {
-		return depart;
-	}
+	
 	
 
 
 
 
-	public void setDepart(PointDePassage depart) {
-		this.depart = depart;
-	}
-*/
+	
+
 
 
 
 	public Challenge(int id, boolean teamPlay, int teamSize, String description, ArrayList<PointDePassage> pointsDePassages,
-			ArrayList<Segment> segments, PointDePassage pdp) {
+			ArrayList<Segment> segments) {
 		this.id = id;
 		this.teamPlay = teamPlay;
 		this.teamSize = teamSize;
 		this.description = description;
 		this.points = pointsDePassages;
 		this.segments = segments;
-		//this.depart = pdp;
+		
 	}
 	
 	
 	
 	
-	public Challenge(int id, boolean teamPlay, int teamSize, String description, PointDePassage pdp) {
+	public Challenge(int id, boolean teamPlay, int teamSize, String description) {
 		this.id = id;
 		this.teamPlay = teamPlay;
 		this.teamSize = teamSize;
 		this.description = description;
-		//this.depart = pdp;
+		
 		this.points = new ArrayList<>();
 		this.segments = new ArrayList<>();
 		
@@ -114,6 +109,18 @@ public Challenge() {
 	public void setSegments(ArrayList<Segment> segments) {
 		this.segments = segments;
 	}
+
+
+
+
+
+
+
+
+
+
+
+
 	
 	
 	

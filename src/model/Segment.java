@@ -1,8 +1,18 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Segment {
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+public class Segment implements Serializable{
+	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 56916071436599392L;
 	private int distance;
 	private ArrayList<Obstacle> obstacles;
 	private PointDePassage depart;
@@ -46,6 +56,20 @@ public class Segment {
 		this.depart = depart;
 		this.arrivee = arrivee;
 		this.obstacles = new ArrayList<> ();
+		
+	}
+	public String toString() {
+		String jsons="{";
+		jsons+="distance : \"" +distance+"\"";
+	    
+        for (Obstacle a : obstacles) {
+        	jsons +=
+            jsons += "\n \"description_obstacle : \"" + "\""+a.getDescription() +"\"";
+           
+        
+        }
+    
+    return jsons+"}";
 		
 	}
 	

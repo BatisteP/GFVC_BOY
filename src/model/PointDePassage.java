@@ -1,6 +1,17 @@
 package model;
 
-public class PointDePassage {
+import java.io.Serializable;
+import java.util.ArrayList;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+public class PointDePassage implements Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1954765070382505217L;
 	private int id;
 	Segment choixRapide;
 	Segment choixLent;
@@ -21,6 +32,16 @@ public class PointDePassage {
 		this.choixRapide = choixRapide;
 		this.choixLent = choixLent;
 	}
-	
+	 public String toString() {
+	        String jsons ="{";
+	        jsons +="id :  \"" +id+"\"";
+	        jsons +="choixRapide : \"" +choixRapide.toString()+"\"";
+	        if (choixLent!=null)  jsons +="choixLent : \"" +choixLent.toString()+"\"";
+	       
+	        
 
+	        
+	    return jsons+"}";
+	        
+	    } 
 }

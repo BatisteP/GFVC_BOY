@@ -1,5 +1,7 @@
 package model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,8 +10,14 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-public class Obstacle {
+public class Obstacle implements Serializable{
 	
+	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4227824923842522157L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO) 	
 	private int id;
@@ -26,6 +34,8 @@ public class Obstacle {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+	public String toString() {
+		return description;
+	}
 
 }

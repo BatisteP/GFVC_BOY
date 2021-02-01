@@ -29,48 +29,30 @@ public class Vitrine {
 	DAOChallenge a = new DAOChallenge();
 	DAOUser u = new DAOUser();
 	
-	@GET
-	@Path( "newchallenge-{id}" )
-	@Produces("text/json")
-	public String newChallengeById (
-			@PathParam ("id") String id) {
-		
-		
-		int i = Integer.parseInt(id);
-		try {
-			
-			
-			a.create(new Challenge(i,true,10, "Test de souffle apres confinement",new PointDePassage(0, null, null)));
-		} catch (NamingException | NotSupportedException | SystemException | SecurityException | IllegalStateException | RollbackException | HeuristicMixedException | HeuristicRollbackException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return "{done}";
-	 }
+	
 	
 	
 	@GET
 	@Path( "getchallenges" )
 	@Produces("text/json")
 	public String getChallenges (){
-			String jsons="";
-			ObjectMapper mapper = new ObjectMapper();
-		
-		
-			ArrayList<Challenge> list =  a.findAll();
-			for (Challenge a : list) {
-				try {
-					  jsons += mapper.writeValueAsString(a);
-					  //System.out.println("ResultingJSONstring = " + json);
-					  //System.out.println(json);
-					} catch (JsonProcessingException e) {
-					   e.printStackTrace();
-					}
-			}
-		
-		return jsons;
-	 }
+        String jsons="";
+    
+    
+    
+        ArrayList<Challenge> list =  a.findAll();
+        for (Challenge a : list) {
+            jsons += "\n \"id du challenge\"" + "\""+a.getId() +"\"";
+            jsons += "\n \"description : \"" + "\""+a.getDescription() +"\"";
+            jsons += "\n \"nombre de gens :\"" + "\""+a.getTeamSize() +"\"";
+            jsons += "\n \"Points de Passage :\"" + "\""+a.getPointsDePassages() +"\"";
+           // jsons += "\n \"Segments : \"" + "\""+a.getSegments() +"\"";
+            jsons += "\n";
+        }
+    
+    return jsons;
+ } 
+
 	/* @Inject
 	private KeyGenerator keyGenerator;*/
 	 
