@@ -17,15 +17,18 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dao.DAOChallenge;
+import dao.DAOSuggestion;
 import dao.DAOUser;
 import model.Challenge;
 import model.Obstacle;
 import model.PointDePassage;
 import model.Segment;
+import model.Suggestion;
 import model.User;
 
 @Path("/admin")
 public class Admin {
+	DAOSuggestion s = new DAOSuggestion();
 	DAOUser u = new DAOUser();
 	DAOChallenge a = new DAOChallenge();
 	@GET
@@ -82,6 +85,26 @@ public class Admin {
 		}
 		
 		return "{done}";
+	 }
+	
+	@GET
+	@Path( "getsuggestions" )
+	@Produces("text/json")
+	public String getSuggestions (){
+			String jsons="";
+			ObjectMapper mapper = new ObjectMapper();
+
+			ArrayList<Suggestion> list =  s.findAll();
+			for (Suggestion a : list) {
+				
+				try {
+					  jsons += mapper.writeValueAsString(a);
+					} catch (JsonProcessingException e) {
+					   e.printStackTrace();
+					}
+			}
+		
+		return jsons;
 	 }
 
 }
