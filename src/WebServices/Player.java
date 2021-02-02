@@ -160,6 +160,7 @@ public class Player {
 			else sugg.incrVoteContr();
 			s.edit(sugg);
 		}
+		
 		else {
 			return "this suggestion doesn't exist, or you don't exist";
 		}
