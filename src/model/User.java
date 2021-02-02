@@ -1,7 +1,9 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -27,6 +29,7 @@ public class User {
 	private String lastname;
 	private String firstname;
 	private Boolean isAdmin;
+	//private Map<Integer/*ID du challenge*/,PointDePassage/*le point de passage auquel on est courrament*/> avancement;
 	/*
 	//@OneToMany (orphanRemoval=true, mappedBy = "challenges");
 	@JoinTable(name = "store_product");
@@ -49,7 +52,12 @@ public class User {
 			joinColumns = @JoinColumn(name = "user_login"),
 			inverseJoinColumns = @JoinColumn(name = "challenge_id"))
 	private Set<Challenge> challenges;
-
+	
+	
+	
+	
+	
+	
 	public User() {	
 	}
 	
@@ -61,6 +69,7 @@ public class User {
 		this.firstname = firstname;
 		this.isAdmin = isAdmin;
 		this.challenges = new HashSet<>();
+		//this.avancement = new HashMap<Integer,PointDePassage>();
 	}
 
 	public Boolean getIsAdmin() {

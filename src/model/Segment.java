@@ -60,17 +60,19 @@ public class Segment implements Serializable{
 	}
 	public String toString() {
 		String jsons="{";
-		jsons+="distance : \"" +distance+"\"";
+		jsons+="distance : "+getDistance();
 	    
+		
         for (Obstacle a : obstacles) {
-        	jsons +=
-            jsons += "\n \"description_obstacle : \"" + "\""+a.getDescription() +"\"";
+        	jsons+= "\nobstacle : "+a.getDescription();
            
         
         }
+        if (this.depart!=null) jsons+= "\npoint_depart "+ this.depart.getId();
+        if (this.arrivee!=null) jsons+= "\npoint_arrivee "+ this.arrivee.getId();
+        
     
     return jsons+"}";
-		
 	}
 	
 	

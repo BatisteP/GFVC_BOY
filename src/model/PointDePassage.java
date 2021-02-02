@@ -22,6 +22,12 @@ public class PointDePassage implements Serializable {
 	public Segment getChoixRapide() {
 		return choixRapide;
 	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public void setChoixRapide(Segment choixRapide) {
 		this.choixRapide = choixRapide;
 	}
@@ -38,9 +44,9 @@ public class PointDePassage implements Serializable {
 	}
 	 public String toString() {
 	        String jsons ="{";
-	        jsons +="id :  \"" +id+"\"";
-	        jsons +="choixRapide : \"" +choixRapide.toString()+"\"";
-	        if (choixLent!=null)  jsons +="choixLent : \"" +choixLent.toString()+"\"";
+	        jsons +="\nPoint_De_Passage :  \"" +id+"\"";
+	        if (choixRapide!=null)jsons +="\nchoixRapide : " +choixRapide.toString();
+	        if (choixLent!=null)  jsons +="\nchoixLent : " +choixLent.toString();
 	       
 	        
 
