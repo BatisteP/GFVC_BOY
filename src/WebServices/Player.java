@@ -59,19 +59,10 @@ public class Player {
 		User u2 = new User(login, password, lastname, firstname, false);
 		u2.setIsAdmin(user.getIsAdmin());
 		u.edit(u2);
-		String jsons="";
-		ObjectMapper mapper = new ObjectMapper();
-
-			try {
-				  jsons += mapper.writeValueAsString(u2);
-				  //System.out.println("ResultingJSONstring = " + json);
-				  //System.out.println(json);
-				} catch (JsonProcessingException e) {
-				   e.printStackTrace();
-				}
+		
 		
 	
-		return jsons;
+		return u2.toString();
 	}
 	
 	@GET
@@ -88,18 +79,10 @@ public class Player {
 		};
 		
 		u.remove(user);
-		String jsons="";
-		ObjectMapper mapper = new ObjectMapper();
-
-			try {
-				  jsons += mapper.writeValueAsString(user);
-				  jsons += "has successfully left us.";
-				  //System.out.println("ResultingJSONstring = " + json);
-				  //System.out.println(json);
-				} catch (JsonProcessingException e) {
-				   e.printStackTrace();
-				}
+		String jsons=user.toString();
 		
+		jsons += "has successfully left us.";
+			
 	
 		return jsons;
 	}
@@ -135,8 +118,7 @@ public class Player {
 			return "user doesn't exist!";
 		};
 		String jsons="";
-		ObjectMapper mapper = new ObjectMapper();
-
+		
 			jsons += "Votre login: "+user.getLogin();
 			jsons += "\nVos challenges: ";
 			for (Challenge c : user.getChallenges()) {

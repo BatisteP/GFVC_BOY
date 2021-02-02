@@ -125,7 +125,7 @@ public Challenge() {
 	}
 	
 	public String toString() {
-		String str = "Challenge: \n";
+		String str = "Challenge: Id = "+this.getId()+"\n";
 		if(teamPlay) {
 			str += "Jeu en équipes de: "+teamSize;
 		}else {
