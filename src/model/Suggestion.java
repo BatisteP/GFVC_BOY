@@ -16,66 +16,63 @@ public class Suggestion {
 	int votesPour = 0;
 	int votesContre= 0;
 	Boolean accepted;
-	
-	public Suggestion() {
-		
-	}
-	public Suggestion(String login, String description,Boolean accepted) {
-		super();
-		this.login=login;
-		this.description=description;
-		this.accepted = accepted;
-		
-	}
-	
-	
-	
-	public void incrVotePour() {
-		votesPour++;
-	}
-	public void incrVoteContr() {
-		votesContre++;
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public int getVotesPour() {
-		return votesPour;
-	}
-	public void setVotesPour(int votesPour) {
-		this.votesPour = votesPour;
-	}
-	public int getVotesContre() {
-		return votesContre;
-	}
-	public void setVotesContre(int votesContre) {
-		this.votesContre = votesContre;
-	}
-	public Boolean getAccepted() {
-		return accepted;
-	}
-	public void setAccepted(Boolean accepted) {
-		this.accepted = accepted;
-	}
-	
-	
-	public String getLogin() {
-		return login;
-	}
-	public void setLogin(String login) {
-		this.login = login;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	
-	
-	
-}
 
+
+    public Suggestion() {
+
+    }
+    public Suggestion(String login, String description,Boolean accepted) {
+        super();
+        this.login=login;
+        this.description=description;
+        this.accepted = accepted;
+
+    }
+
+
+    public void incrVotePour() {
+        votesPour++;
+    }
+    public void incrVoteContr() {
+        votesContre++;
+    }
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+    public int getVotesPour() {
+        return votesPour;
+    }
+    public void setVotesPour(int votesPour) {
+        this.votesPour = votesPour;
+    }
+    public int getVotesContre() {
+        return votesContre;
+    }
+    public void setVotesContre(int votesContre) {
+        this.votesContre = votesContre;
+    }
+    public Boolean getAccepted() {
+        return accepted;
+    }
+    public void setAccepted(Boolean accepted) {
+        this.accepted = accepted;
+    }
+
+
+    public String getLogin() {
+        return login;
+    }
+    public void setLogin(String login) {
+        this.login = login;
+    }
+    public String getDescription() {
+        return description;
+    }
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
+}

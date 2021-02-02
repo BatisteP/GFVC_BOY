@@ -114,5 +114,36 @@ public class Admin {
 		
 		return jsons;
 	 }
+	@GET
+	@Path( "approvesuggestion-{id}-{verdict}" )
+	@Produces("text/json")
+	public String approveSuggestions (@PathParam ("id") int id, @PathParam("verdict") Boolean verdict) throws SecurityException, IllegalStateException, NotSupportedException, SystemException, NamingException, RollbackException, HeuristicMixedException, HeuristicRollbackException {
+			Suggestion sugg = s.find(id);
+			if (sugg == null) {
+				return "suggestion doesn't exist!";
+			};
+			sugg.setAccepted(verdict);
+			String jsons="";
+			ObjectMapper mapper = new ObjectMapper();
+			if (verdict.equals(false)){
+
+				try {
+					  jsons += mapper.writeValueAsString(sugg);
+					  jsons += "has been disapproved by the judges.";
+					} catch (JsonProcessingException e) {
+					   e.printStackTrace();
+					}
+			}
+			else if (verdict.equals(true)) {
+				try {
+					  jsons += mapper.writeValueAsString(sugg);
+					  jsons += "has been approved by the judges.";
+					} catch (JsonProcessingException e) {
+					   e.printStackTrace();
+					}
+				}
+			s.edit(sugg);
+			return jsons;
+		}
 
 }

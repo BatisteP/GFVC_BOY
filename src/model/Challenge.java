@@ -54,9 +54,7 @@ public Challenge() {
 		this.segments = segments;
 		
 	}
-	
-	
-	
+
 	
 	public Challenge(int id, boolean teamPlay, int teamSize, String description) {
 		this.id = id;
