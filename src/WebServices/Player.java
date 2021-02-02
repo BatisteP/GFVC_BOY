@@ -145,6 +145,7 @@ public class Player {
 		}
 		return "Challenge ou utilisateur inconnu.";
 	}
+
 	@GET
 	@Path ("/{login}/voteSuggestion-{id}")
 	@Produces("text/json")
@@ -175,7 +176,7 @@ public class Player {
 		
 		
 	}
-	
+
 	
 	
 }
