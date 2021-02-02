@@ -42,11 +42,14 @@ public class Vitrine {
     
         ArrayList<Challenge> list =  a.findAll();
         for (Challenge a : list) {
+        	/*
             jsons += "\n \"id du challenge\"" + "\""+a.getId() +"\"";
             jsons += "\n \"description : \"" + "\""+a.getDescription() +"\"";
             jsons += "\n \"nombre de gens :\"" + "\""+a.getTeamSize() +"\"";
             jsons += "\n \"Points de Passage :\"" + "\""+a.getPointsDePassages() +"\"";
            // jsons += "\n \"Segments : \"" + "\""+a.getSegments() +"\"";
+            * */
+            jsons += a;
             jsons += "\n";
         }
     
