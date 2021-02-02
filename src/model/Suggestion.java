@@ -9,15 +9,30 @@ public class Suggestion {
 	@Id
 	String login;
 	String description;
+	Boolean accepted;
 	
-	public Suggestion() {}
 	
 	public Suggestion(String login, String description) {
+		
+	}
+	public Suggestion() {
+		
+	}
+	public Suggestion(String login, String description,Boolean accepted) {
 		super();
 		this.login=login;
 		this.description=description;
+		this.accepted = accepted;
 		
 	}
+	
+	public Boolean getAccepted() {
+		return accepted;
+	}
+	public void setAccepted(Boolean accepted) {
+		this.accepted = accepted;
+	}
+	
 	
 	public String getLogin() {
 		return login;

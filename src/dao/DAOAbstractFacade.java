@@ -96,15 +96,28 @@ public abstract class DAOAbstractFacade<T> {
 		transaction.begin();
 		getEntityManager().merge(entite);
 		transaction.commit();
+		//getEntityManager().flush();
+		
 	}
 
 	/**
 	 * Methode de suppression d'un objet.
 	 * 
 	 * @param entite
+	 * @throws SystemException 
+	 * @throws NotSupportedException 
+	 * @throws HeuristicRollbackException 
+	 * @throws HeuristicMixedException 
+	 * @throws RollbackException 
+	 * @throws IllegalStateException 
+	 * @throws SecurityException 
+	 * @throws NamingException 
 	 */
-	public void remove(T entite) {
+	public void remove(T entite) throws NotSupportedException, SystemException, SecurityException, IllegalStateException, RollbackException, HeuristicMixedException, HeuristicRollbackException, NamingException {
+		UserTransaction transaction = (UserTransaction)new InitialContext().lookup("java:comp/UserTransaction");
+		transaction.begin();
 		getEntityManager().remove(getEntityManager().merge(entite));
+		transaction.commit();
 	}
 
 	/**
@@ -113,9 +126,22 @@ public abstract class DAOAbstractFacade<T> {
 	 * @param id
 	 * @return
 	 * @return
+	 * @throws SystemException 
+	 * @throws NotSupportedException 
+	 * @throws NamingException 
+	 * @throws HeuristicRollbackException 
+	 * @throws HeuristicMixedException 
+	 * @throws RollbackException 
+	 * @throws IllegalStateException 
+	 * @throws SecurityException 
 	 */
-	public T find(Object id) {
-		return getEntityManager().find(classeEntite, id);
+	public T find(Object id) throws NotSupportedException, SystemException, NamingException, SecurityException, IllegalStateException, RollbackException, HeuristicMixedException, HeuristicRollbackException {
+		UserTransaction transaction = (UserTransaction)new InitialContext().lookup("java:comp/UserTransaction");
+		transaction.begin();
+		T obj =  getEntityManager().find(classeEntite, id);
+		transaction.commit();
+		return obj;
+		
 	}
 
 	/**
