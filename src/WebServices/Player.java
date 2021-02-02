@@ -74,14 +74,49 @@ public class Player {
 		return jsons;
 	}
 	
+	@GET
+	@Path( "/{login}/quit" )
+	@Produces("text/json")
+	public String quitApplication(@PathParam ("login") String login, @QueryParam("currentpassword") String currpassword) throws SecurityException, IllegalStateException, NotSupportedException, SystemException, NamingException, RollbackException, HeuristicMixedException, HeuristicRollbackException {
+		User user = u.find(login);
+		
+		if (user == null) {
+			return "user doesn't exist!";
+		};
+		if (!user.getPassword().equals(currpassword)) {
+			return "wrong password";
+		};
+		
+		u.remove(user);
+		String jsons="";
+		ObjectMapper mapper = new ObjectMapper();
+
+			try {
+				  jsons += mapper.writeValueAsString(user);
+				  jsons += "has successfully left us.";
+				  //System.out.println("ResultingJSONstring = " + json);
+				  //System.out.println(json);
+				} catch (JsonProcessingException e) {
+				   e.printStackTrace();
+				}
+		
+	
+		return jsons;
+	}
+	
+	
 	
 	@GET
 	@Path( "/newsuggestion" )
 	@Produces("text/json")
 	public String newSuggestion (
 			@QueryParam("login") String login, @QueryParam("description") String description) {
-
+		
 		try {
+			User user = u.find(login);
+			if (user == null) {
+				return "user doesn't exist!";
+			};
 		s.create(new Suggestion(login,description,false));
 		} catch (NamingException | NotSupportedException | SystemException | SecurityException | IllegalStateException | RollbackException | HeuristicMixedException | HeuristicRollbackException e) {
 			// TODO Auto-generated catch block
@@ -145,6 +180,39 @@ public class Player {
 		}
 		return "Challenge ou utilisateur inconnu.";
 	}
+
+	@GET
+	@Path ("/{login}/voteSuggestion-{id}")
+	@Produces("text/json")
+	public String voteSugestion(@PathParam ("login") String login,@PathParam ("id") String id, @QueryParam("vote") String vote) throws SecurityException, IllegalStateException, NotSupportedException, SystemException, NamingException, RollbackException, HeuristicMixedException, HeuristicRollbackException {
+		
+		User user = u.find(login);
+		Suggestion sugg = s.find(Integer.parseInt(id));
+	
+		if (user != null && sugg != null) {
+			boolean flag;
+			if (vote.equals("yes")) sugg.incrVotePour();
+			else sugg.incrVoteContr();
+			s.edit(sugg);
+		}
+		
+		else {
+			return "this suggestion doesn't exist, or you don't exist";
+		}
+		ObjectMapper mapper = new ObjectMapper();
+		String jsons="";
+		try {
+			  jsons += mapper.writeValueAsString(sugg);
+			  //System.out.println("ResultingJSONstring = " + json);
+			  //System.out.println(json);
+			} catch (JsonProcessingException e) {
+			   e.printStackTrace();
+			}
+		return jsons;
+		
+		
+	}
+
 	
 	
 }

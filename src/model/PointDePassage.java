@@ -3,6 +3,9 @@ package model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -12,6 +15,7 @@ public class PointDePassage implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -1954765070382505217L;
+	@GeneratedValue(strategy = GenerationType.AUTO) 	
 	private int id;
 	Segment choixRapide;
 	Segment choixLent;
