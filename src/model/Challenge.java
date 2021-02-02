@@ -23,6 +23,7 @@ public class Challenge {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO) 	
 	private int id;
+
 	private boolean teamPlay;
 	private int teamSize;
 	private String description;
@@ -56,8 +57,8 @@ public Challenge() {
 	}
 
 	
-	public Challenge(int id, boolean teamPlay, int teamSize, String description) {
-		this.id = id;
+	public Challenge(boolean teamPlay, int teamSize, String description) {
+		
 		this.teamPlay = teamPlay;
 		this.teamSize = teamSize;
 		this.description = description;
@@ -77,10 +78,10 @@ public Challenge() {
 		this.id = id;
 	}
 	
-	public void addSegment(Segment seg) {
-		segments.add(seg);
-		points.add(seg.getArrivee());
-		points.add(seg.getDepart());
+	public void addPointDePassage(PointDePassage passage) {
+		
+		points.add(passage);
+	
 		
 	}
 
@@ -132,13 +133,16 @@ public Challenge() {
 		}
 		str+= "\n";
 		str += this.description;
-		for (PointDePassage pointDePassage : points) {
-			str += pointDePassage;
-		}
 		str+= "\n";
+		for (PointDePassage pointDePassage : points) {
+			str += pointDePassage.toString();
+			str+= "\n";
+		}
+		
+		/*
 		for (Segment s : this.segments) {
 			str += s;
-		}
+		}*/
 		str+= "\n Joueurs inscrits: " + this.users.size()+"\n Voici la liste:";
 		for (User u : this.users) {
 			str += u.getLogin() + "\n";
