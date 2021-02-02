@@ -29,6 +29,7 @@ public class Suggestion {
 	}
 	
 	
+	
 	public void incrVotePour() {
 		votesPour++;
 	}
