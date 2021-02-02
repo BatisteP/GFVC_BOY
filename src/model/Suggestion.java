@@ -1,14 +1,20 @@
 package model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 
 @Entity
 public class Suggestion {
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO) 	
+	int id;
 	String login;
 	String description;
+	int votesPour = 0;
+	int votesContre= 0;
 	Boolean accepted;
 	
 	public Suggestion() {
@@ -23,7 +29,30 @@ public class Suggestion {
 	}
 	
 	
-	
+	public void incrVotePour() {
+		votesPour++;
+	}
+	public void incrVoteContr() {
+		votesContre++;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public int getVotesPour() {
+		return votesPour;
+	}
+	public void setVotesPour(int votesPour) {
+		this.votesPour = votesPour;
+	}
+	public int getVotesContre() {
+		return votesContre;
+	}
+	public void setVotesContre(int votesContre) {
+		this.votesContre = votesContre;
+	}
 	public Boolean getAccepted() {
 		return accepted;
 	}
@@ -46,10 +75,6 @@ public class Suggestion {
 	}
 	
 	
-	public String toString() {
-		String jsons="{";
-		jsons+="Username : \"" +login+"\"";
-		jsons+="Description : \"" +description+"\"";
-    return jsons+"}";
+	
 }
-}
+

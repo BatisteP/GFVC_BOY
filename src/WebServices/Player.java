@@ -48,7 +48,6 @@ public class Player {
 	@Path( "/{login}/newInfos" )
 	@Produces("text/json")
 	public String modifyInfos(@PathParam ("login") String login, @QueryParam("currentpassword") String currpassword,@QueryParam("newpassword") String password, @QueryParam("lastname") String lastname, @QueryParam("firstname") String firstname) throws SecurityException, IllegalStateException, NotSupportedException, SystemException, NamingException, RollbackException, HeuristicMixedException, HeuristicRollbackException {
-		User u2 = new User(login, password, lastname, firstname, false);
 		User user = u.find(login);
 		
 		if (user == null) {
@@ -57,6 +56,7 @@ public class Player {
 		if (!user.getPassword().equals(currpassword)) {
 			return "wrong password";
 		};
+		User u2 = new User(login, password, lastname, firstname, false);
 		u2.setIsAdmin(user.getIsAdmin());
 		u.edit(u2);
 		String jsons="";
@@ -90,6 +90,92 @@ public class Player {
 		
 		return "{done}";
 	 }
+	
+	@GET
+	@Path("/getMyChallenges")
+	@Produces("text/json")
+	public String getChallenges(@QueryParam("login") String login) throws SecurityException, IllegalStateException, NotSupportedException, SystemException, NamingException, RollbackException, HeuristicMixedException, HeuristicRollbackException{
+		User user = u.find(login);
+		if (user == null) {
+			return "user doesn't exist!";
+		};
+		String jsons="";
+		ObjectMapper mapper = new ObjectMapper();
+
+			jsons += "Votre login: "+user.getLogin();
+			jsons += "\nVos challenges: ";
+			for (Challenge c : user.getChallenges()) {
+				jsons += c;
+				jsons += "\n";
+			}
+		
+	
+		return jsons;	
+	}
+	
+	@GET
+	@Path( "/chooseChallenge")
+	@Produces("text/json")
+	public String addChallenge(@QueryParam("login") String login,@QueryParam("id") String id) throws SecurityException, IllegalStateException, NotSupportedException, SystemException, NamingException, RollbackException, HeuristicMixedException, HeuristicRollbackException {
+		int i = Integer.parseInt(id);
+		User user = u.find(login);
+		Challenge challenge = c.find(i);
+		if (user != null && challenge != null) {
+			user.addChallenge(challenge);
+			u.edit(user);
+			return user.getLogin()+ "inscrit à challenge " + challenge.getId();
+		}
+		return "Challenge ou utilisateur inconnu.";
+	}
+	
+	@GET
+	@Path ("/removeChallenge")
+	@Produces("text/json")
+	public String removeChallenge(@QueryParam("login") String login, @QueryParam("id") String id) throws SecurityException, IllegalStateException, NotSupportedException, SystemException, NamingException, RollbackException, HeuristicMixedException, HeuristicRollbackException {
+		User user = u.find(login);
+		Challenge challenge = c.find(Integer.parseInt(id));
+		if (user != null && challenge != null) {
+			Boolean lol = user.getChallenges().contains(challenge);
+			for(Challenge c : user.getChallenges()) {
+				if (c.getId() == Integer.parseInt(id)) user.removeChallenge(c);
+			}
+			//user.removeChallenge(challenge);
+			u.edit(user);
+			return "Vous êtes "+login+" et vous avez quitté  le challenge "+id+"    "+ user.getChallenges().size();
+		}
+		return "Challenge ou utilisateur inconnu.";
+	}
+	@GET
+	@Path ("/{login}/voteSuggestion-{id}")
+	@Produces("text/json")
+	public String voteSugestion(@PathParam ("login") String login,@PathParam ("id") String id, @QueryParam("vote") String vote) throws SecurityException, IllegalStateException, NotSupportedException, SystemException, NamingException, RollbackException, HeuristicMixedException, HeuristicRollbackException {
+		
+		User user = u.find(login);
+		Suggestion sugg = s.find(Integer.parseInt(id));
+	
+		if (user != null && sugg != null) {
+			boolean flag;
+			if (vote.equals("yes")) sugg.incrVotePour();
+			else sugg.incrVoteContr();
+			s.edit(sugg);
+		}
+		else {
+			return "this suggestion doesn't exist, or you don't exist";
+		}
+		ObjectMapper mapper = new ObjectMapper();
+		String jsons="";
+		try {
+			  jsons += mapper.writeValueAsString(sugg);
+			  //System.out.println("ResultingJSONstring = " + json);
+			  //System.out.println(json);
+			} catch (JsonProcessingException e) {
+			   e.printStackTrace();
+			}
+		return jsons;
+		
+		
+	}
+	
 	
 	
 }

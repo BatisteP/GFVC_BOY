@@ -12,6 +12,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -54,6 +55,13 @@ public class Admin {
 		
 		return jsons;
 	 }
+	
+	@GET
+	@Path("removeuser")
+	public void removeUser(@QueryParam("login") String login) throws SecurityException, IllegalStateException, NotSupportedException, SystemException, RollbackException, HeuristicMixedException, HeuristicRollbackException, NamingException {
+		u.remove(u.find(login));
+	}
+	
 	@GET
 	@Path( "newchallenge-{id}" )
 	@Produces("text/json")
