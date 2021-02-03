@@ -56,7 +56,16 @@ public Challenge() {
 		
 	}
 
-	
+	/**
+	 * 
+	 * @param id ID du challenge généré par la DB
+	 * @param teamPlay le challenge est-il solo ou non
+	 * @param teamSize nombre de gens qui peuvent le faire en simultané
+	 * @param description titre du challenge
+		lié dans la BDD à USER par la table INSCRIPTION
+		@see User
+		@see WebServices.Admin#example
+	 */
 	public Challenge(boolean teamPlay, int teamSize, String description) {
 		
 		this.teamPlay = teamPlay;
@@ -123,13 +132,15 @@ public Challenge() {
 	public int hashCode() {
 		return 0;
 	}
-	
+	/**
+	 * toString perso car le json auto ne marche pas à cause de la liste de points de passage etc...
+	 */
 	public String toString() {
 		String str = "Challenge: Id = "+this.getId()+"\n";
 		if(teamPlay) {
-			str += "Jeu en Ã©quipes de: "+teamSize;
+			str += "Jeu en équipes de: "+teamSize;
 		}else {
-			str += "Jeu pas en Ã©quipe.";
+			str += "Jeu pas en équipe.";
 		}
 		str+= "\n";
 		str += this.description;

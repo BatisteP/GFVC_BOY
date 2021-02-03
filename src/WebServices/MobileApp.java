@@ -18,6 +18,7 @@ import model.Challenge;
 import model.PointDePassage;
 import model.User;
 
+
 @Path("/mobileapp")
 public class MobileApp {
 	DAOUser u = new DAOUser();
@@ -29,7 +30,22 @@ public class MobileApp {
         return "hello";
     }
 	
-	
+	/**
+	 *  route permettant de changer l'étape courante d'un challenge pour un joueur
+	 * @param login du joueur
+	 * @param id du challenge 
+	 * @param modedeplacement
+	 * @param newetape nouvelle étape atteinte
+	 * @return jsons de l'user
+	 * @throws SecurityException
+	 * @throws IllegalStateException
+	 * @throws NotSupportedException
+	 * @throws SystemException
+	 * @throws NamingException
+	 * @throws RollbackException
+	 * @throws HeuristicMixedException
+	 * @throws HeuristicRollbackException
+	 */
 	@GET
 	@Path("/{login}/challenge-{id}-{modedeplacement}")
 	@Produces("text/json")

@@ -37,6 +37,12 @@ public class PointDePassage implements Serializable {
 	public void setChoixLent(Segment choixLent) {
 		this.choixLent = choixLent;
 	}
+	/**
+	 * 
+	 * @param id numéro du point de passage dans le challenge
+	 * @param choixRapide si un seul segment part du point de passage, c'est le choixRapide
+	 * @param choixLent  deux départs possibles au maximum
+	 */
 	public PointDePassage(int id,Segment choixRapide, Segment choixLent) {
 		this.id = id;
 		this.choixRapide = choixRapide;

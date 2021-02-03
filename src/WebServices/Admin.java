@@ -29,9 +29,14 @@ import model.User;
 
 @Path("/admin")
 public class Admin {
+
 	DAOSuggestion s = new DAOSuggestion();
 	DAOUser u = new DAOUser();
 	DAOChallenge a = new DAOChallenge();
+	/**
+	 * 
+	 * @return le json des utilisateurs
+	 */
 	@GET
 	@Path( "getusers" )
 	@Produces("text/json")
@@ -49,14 +54,36 @@ public class Admin {
 		
 		return jsons;
 	 }
-	
+	/**
+	 * 
+	 * @param login
+	 * @throws SecurityException
+	 * @throws IllegalStateException
+	 * @throws NotSupportedException
+	 * @throws SystemException
+	 * @throws RollbackException
+	 * @throws HeuristicMixedException
+	 * @throws HeuristicRollbackException
+	 * @throws NamingException
+	 */
 	@GET
 	@Path("removeuser")
 	public void removeUser(@QueryParam("login") String login) throws SecurityException, IllegalStateException, NotSupportedException, SystemException, RollbackException, HeuristicMixedException, HeuristicRollbackException, NamingException {
 		u.remove(u.find(login));
 	}
 	
-	
+	/**
+	 *  permet de remplir la base de donnée avec un challenge élaboré
+	 * @return
+	 * @throws SecurityException
+	 * @throws IllegalStateException
+	 * @throws NamingException
+	 * @throws NotSupportedException
+	 * @throws SystemException
+	 * @throws RollbackException
+	 * @throws HeuristicMixedException
+	 * @throws HeuristicRollbackException
+	 */
 	@GET
 	@Path ("createExampleChallenge")
 	@Produces("text/json")
@@ -94,6 +121,13 @@ public class Admin {
 		a.create(c);
 		return c.toString();
 	}
+	/**
+	 * crée un challenge sans segment/pointdepassage voir les autres méthodes (à développer pour enrichir le challenge)
+	 * @param description
+	 * @param tp
+	 * @param ts
+	 * @return jsons du challenge
+	 */
 	@GET
 	@Path( "newchallenge" )
 	@Produces("text/json")
@@ -130,6 +164,10 @@ public class Admin {
 		return c.toString();
 	 }
 	
+	/**
+	 * 
+	 * @return le json des suggestions
+	 */
 	@GET
 	@Path( "getsuggestions" )
 	@Produces("text/json")
@@ -149,6 +187,20 @@ public class Admin {
 		
 		return jsons;
 	 }
+	/**
+	 * 
+	 * @param id id de la suggestion
+	 * @param verdict approve la suggestion (true) ou non (false)
+	 * @return le json de la suggestion
+	 * @throws SecurityException
+	 * @throws IllegalStateException
+	 * @throws NotSupportedException
+	 * @throws SystemException
+	 * @throws NamingException
+	 * @throws RollbackException
+	 * @throws HeuristicMixedException
+	 * @throws HeuristicRollbackException
+	 */
 	@GET
 	@Path( "approvesuggestion-{id}-{verdict}" )
 	@Produces("text/json")

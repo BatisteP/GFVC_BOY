@@ -23,6 +23,11 @@ public class Obstacle implements Serializable{
 	private int id;
 	private String description;
 	public Obstacle() {};
+	/**
+	 * 
+	 * @param id peu important
+	 * @param description
+	 */
 	public Obstacle(int id,String description) {
 		this.id = id;
 		this.description = description;

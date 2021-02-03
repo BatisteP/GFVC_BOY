@@ -51,6 +51,12 @@ public class Segment implements Serializable{
 		this.depart = depart;
 		this.arrivee = arrivee;
 	}
+	/**
+	 * 
+	 * @param distance distance pour réaliser le challenge
+	 * @param depart point de départ
+	 * @param arrivee point d'arrivée
+	 */
 	public Segment(int distance, PointDePassage depart, PointDePassage arrivee) {
 		this.distance = distance;
 		this.depart = depart;

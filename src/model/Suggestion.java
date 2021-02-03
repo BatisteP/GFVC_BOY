@@ -20,6 +20,14 @@ public class Suggestion {
     public Suggestion() {
 
     }
+    /**
+     * 
+     * @param login 
+     * 		l'utilisateur
+     * @param description 
+     * @param accepted 
+     * 		état de la suggestion, à accepter par l'admin
+     */
     public Suggestion(String login, String description,Boolean accepted) {
         super();
         this.login=login;

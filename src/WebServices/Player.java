@@ -30,11 +30,6 @@ import model.Suggestion;
 @Path("/player")
 public class Player {
 	
-	@GET
-    @Produces("text/json")
-    public String hello() {
-        return "hello";
-    }
 	
 	DAOSuggestion s = new DAOSuggestion();
 	DAOChallenge c = new DAOChallenge();
@@ -43,7 +38,23 @@ public class Player {
 
 	//api/player/modifierProfil{infos...} (modifier le profil avec les infos)-> api/player
 	
-	
+	/**
+	 * modifie les infos d'un membre
+	 * @param login
+	 * @param currpassword vérifie qu'il connait le password
+	 * @param password le nouveau password
+	 * @param lastname le nouveau nom
+	 * @param firstname le nouveau prénom
+	 * @return jsons de l'user
+	 * @throws SecurityException
+	 * @throws IllegalStateException
+	 * @throws NotSupportedException
+	 * @throws SystemException
+	 * @throws NamingException
+	 * @throws RollbackException
+	 * @throws HeuristicMixedException
+	 * @throws HeuristicRollbackException
+	 */
 	@GET
 	@Path( "/{login}/newInfos" )
 	@Produces("text/json")
@@ -64,7 +75,20 @@ public class Player {
 	
 		return u2.toString();
 	}
-	
+	/**
+	 * désinscription de l'application
+	 * @param login
+	 * @param currpassword
+	 * @return
+	 * @throws SecurityException
+	 * @throws IllegalStateException
+	 * @throws NotSupportedException
+	 * @throws SystemException
+	 * @throws NamingException
+	 * @throws RollbackException
+	 * @throws HeuristicMixedException
+	 * @throws HeuristicRollbackException
+	 */
 	@GET
 	@Path( "/{login}/quit" )
 	@Produces("text/json")
@@ -88,7 +112,14 @@ public class Player {
 	}
 	
 	
-	
+	/**
+	 * crée un nouvelle suggestion, soumise au vote des autres utilisateurs, et à ^étre acceptée par l'admin
+	 * @param login
+	 * @param description
+	 * @return message ok
+	 * @see Admin#approveSuggestions(int, Boolean)
+	 * @see #voteSugestion(String, String, String)
+	 */
 	@GET
 	@Path( "/newsuggestion" )
 	@Produces("text/json")
@@ -108,7 +139,19 @@ public class Player {
 		
 		return "{done}";
 	 }
-	
+	/**
+	 * renvoie les challenges auxquels l'utilisateur est inscrit
+	 * @param login
+	 * @return
+	 * @throws SecurityException
+	 * @throws IllegalStateException
+	 * @throws NotSupportedException
+	 * @throws SystemException
+	 * @throws NamingException
+	 * @throws RollbackException
+	 * @throws HeuristicMixedException
+	 * @throws HeuristicRollbackException
+	 */
 	@GET
 	@Path("/getMyChallenges")
 	@Produces("text/json")
@@ -129,7 +172,20 @@ public class Player {
 	
 		return jsons;	
 	}
-	
+	/**
+	 * inscription à un challenge si celui-ci existe
+	 * @param login
+	 * @param id
+	 * @return
+	 * @throws SecurityException
+	 * @throws IllegalStateException
+	 * @throws NotSupportedException
+	 * @throws SystemException
+	 * @throws NamingException
+	 * @throws RollbackException
+	 * @throws HeuristicMixedException
+	 * @throws HeuristicRollbackException
+	 */
 	@GET
 	@Path( "/chooseChallenge")
 	@Produces("text/json")
@@ -144,7 +200,20 @@ public class Player {
 		}
 		return "Challenge ou utilisateur inconnu.";
 	}
-	
+	/**
+	 * désinscription à un challenge si celui-ci existe
+	 * @param login
+	 * @param id
+	 * @return
+	 * @throws SecurityException
+	 * @throws IllegalStateException
+	 * @throws NotSupportedException
+	 * @throws SystemException
+	 * @throws NamingException
+	 * @throws RollbackException
+	 * @throws HeuristicMixedException
+	 * @throws HeuristicRollbackException
+	 */
 	@GET
 	@Path ("/removeChallenge")
 	@Produces("text/json")
@@ -156,13 +225,27 @@ public class Player {
 			for(Challenge c : user.getChallenges()) {
 				if (c.getId() == Integer.parseInt(id)) user.removeChallenge(c);
 			}
-			//user.removeChallenge(challenge);
+			user.removeChallenge(challenge);
 			u.edit(user);
 			return "Vous Ãªtes "+login+" et vous avez quittÃ©  le challenge "+id+"    "+ user.getChallenges().size();
 		}
 		return "Challenge ou utilisateur inconnu.";
 	}
-
+	/**
+	 * permet de voter pour ou contre une suggestion
+	 * @param login
+	 * @param id
+	 * @param vote
+	 * @return
+	 * @throws SecurityException
+	 * @throws IllegalStateException
+	 * @throws NotSupportedException
+	 * @throws SystemException
+	 * @throws NamingException
+	 * @throws RollbackException
+	 * @throws HeuristicMixedException
+	 * @throws HeuristicRollbackException
+	 */
 	@GET
 	@Path ("/{login}/voteSuggestion-{id}")
 	@Produces("text/json")

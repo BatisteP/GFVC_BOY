@@ -60,7 +60,16 @@ public class User {
 	
 	public User() {	
 	}
-	
+	/**
+	 *
+	 * @param login clé primaire dans la DB
+	 * @param password 
+	 * @param lastname
+	 * @param firstname
+	 * @param isAdmin true : admin false : player
+	 * lié dans la BDD à challenge par la table inscription
+	 * @see Challenge
+	 */
 	public User(String login, String password, String lastname, String firstname, Boolean isAdmin) {
 		super();
 		this.login = login;

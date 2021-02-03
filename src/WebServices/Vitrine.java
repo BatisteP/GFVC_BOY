@@ -31,7 +31,10 @@ public class Vitrine {
 	
 	
 	
-	
+	/**
+	 *
+	 * @return les challenges qui sont dans la BDD
+	 */
 	@GET
 	@Path( "getchallenges" )
 	@Produces("text/json")
@@ -60,7 +63,15 @@ public class Vitrine {
 	private KeyGenerator keyGenerator;*/
 	 
 	
-	
+	/**
+	 * permet de s'inscrire : crée un nouvel utilisateur, admin ou player simple
+	 * @param login
+	 * @param password
+	 * @param lastname
+	 * @param firstname
+	 * @param isAdmin
+	 * @return
+	 */
 	@GET
 	@Path( "newuser" )
 	@Produces("text/json")
