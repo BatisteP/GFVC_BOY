@@ -73,7 +73,7 @@ public class Admin {
 	}
 	
 	/**
-	 *  permet de remplir la base de donnée avec un challenge élaboré
+	 *  permet de remplir la base de donnee avec un challenge elabore
 	 * @return
 	 * @throws SecurityException
 	 * @throws IllegalStateException
@@ -96,14 +96,14 @@ public class Admin {
 		PointDePassage p5 = new PointDePassage(5,null,null);
 		Segment s1 = new Segment(100,p1,p2);
 		s1.addObstacle(new Obstacle(1,"Tyrolienne avec les cables du tram"));
-		s1.addObstacle(new Obstacle(2,"Quel est l'être doué de la voix qui a quatre pieds le matin, deux à midi et trois le soir ?"));
+		s1.addObstacle(new Obstacle(2,"Quel est l'etre doue de la voix qui a quatre pieds le matin, deux à midi et trois le soir ?"));
 		Segment s2 = new Segment(50,p1,p3);
-		s2.addObstacle(new Obstacle(3,"Saut de l'ange : du 5ème étage. Pas pour les faibles."));
+		s2.addObstacle(new Obstacle(3,"Saut de l'ange : du 5eme etage. Pas pour les faibles."));
 		s2.addObstacle(new Obstacle(4,"Parcours du combattant, ramper au milieu de la route entre les voitures (avec camouflage\"bitume\")."));
 		Segment s3 = new Segment(40,p2,p4);
-		s3.addObstacle(new Obstacle(5,"Toboggan catapule dirigé vers L'Ill. (savoir nager)"));
+		s3.addObstacle(new Obstacle(5,"Toboggan catapule dirige vers L'Ill. (savoir nager)"));
 		Segment s4 = new Segment(12,p3,p4);
-		s4.addObstacle(new Obstacle(6,"Comment démarrer un serveur Payara. Test sur 3 OS différents randomisés"));
+		s4.addObstacle(new Obstacle(6,"Comment demarrer un serveur Payara. Test sur 3 OS differents randomises"));
 		s4.addObstacle(new Obstacle(7,"Rodeo, tenir 5minutes. Vache non fournie."));
 		Segment s5 = new Segment(42200,p4,p5);
 		s5.addObstacle(new Obstacle(8,"Marathon."));
@@ -122,7 +122,7 @@ public class Admin {
 		return c.toString();
 	}
 	/**
-	 * crée un challenge sans segment/pointdepassage voir les autres méthodes (à développer pour enrichir le challenge)
+	 * cree un challenge sans segment/pointdepassage voir les autres methodes (à developper pour enrichir le challenge)
 	 * @param description
 	 * @param tp
 	 * @param ts
@@ -138,21 +138,6 @@ public class Admin {
 		int teamsize = Integer.parseInt(ts);
 		try {
 			
-			/*ArrayList<Obstacle> l= new ArrayList<Obstacle>();
-			l.add(new Obstacle(1,"ring of fire : extincteur non fourni"));
-			Segment s = new Segment(1, l, null, null);
-			PointDePassage p1 =new PointDePassage(1,s,null);
-			PointDePassage p2 = new PointDePassage(2,s,null);
-			s.setDepart(p1);
-			s.setArrivee(p2);
-			 ArrayList<PointDePassage> pointsDePassages = new  ArrayList<PointDePassage>();
-			 pointsDePassages.add(p1);
-			 pointsDePassages.add(p2);
-	
-			 ArrayList<Segment> seg = new ArrayList<Segment>();
-			 seg.add(s);
-			//a.create(new Challenge(i,true,10, "Test de souffle apres confinement"));
-			a.create(new Challenge(i,true,10, "Test de souffle apres confinement",pointsDePassages,seg));*/
 			c = new Challenge(tp,teamsize, description);
 			a.create(c);
 			

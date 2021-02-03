@@ -41,6 +41,7 @@ public class Challenge {
     mappedBy = "challenges")
 	private Set<User>users;
 	
+	
 public Challenge() {
 		
 	}
