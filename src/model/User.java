@@ -116,7 +116,7 @@ public class User {
 	
 	public void addChallenge(Challenge c) {
 		this.challenges.add(c);
-		//this.avancement.put(c.getId(),1);
+		this.avancement.put(c.getId(),1);
 	}
 	
 	public Map<Integer, Integer> getAvancement() {
