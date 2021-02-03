@@ -37,20 +37,14 @@ public class Admin {
 	@Produces("text/json")
 	public String getUsers (){
 			String jsons="";
-			ObjectMapper mapper = new ObjectMapper();
+		
 			
 		
 		
 			ArrayList<User> list =  u.findAll();
 			for (User a : list) {
 				
-				try {
-					  jsons += mapper.writeValueAsString(a);
-					  //System.out.println("ResultingJSONstring = " + json);
-					  //System.out.println(json);
-					} catch (JsonProcessingException e) {
-					   e.printStackTrace();
-					}
+				jsons+=a.toString()+"\n";
 			}
 		
 		return jsons;

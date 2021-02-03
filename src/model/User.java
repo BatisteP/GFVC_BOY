@@ -29,7 +29,7 @@ public class User {
 	private String lastname;
 	private String firstname;
 	private Boolean isAdmin;
-	//private Map<Integer/*ID du challenge*/,PointDePassage/*le point de passage auquel on est courrament*/> avancement;
+	private Map<Integer/*ID du challenge*/,Integer/*id du point de passage où tu es courrament*/> avancement;
 	/*
 	//@OneToMany (orphanRemoval=true, mappedBy = "challenges");
 	@JoinTable(name = "store_product");
@@ -69,7 +69,7 @@ public class User {
 		this.firstname = firstname;
 		this.isAdmin = isAdmin;
 		this.challenges = new HashSet<>();
-		//this.avancement = new HashMap<Integer,PointDePassage>();
+		this.avancement = new HashMap<Integer,Integer>();
 	}
 
 	public Boolean getIsAdmin() {
@@ -87,7 +87,9 @@ public class User {
 	public void setLogin(String login) {
 		this.login = login;
 	}
-
+	public void changeAvancement(int challengeid,int newavancement) {
+		avancement.put(challengeid, newavancement);
+	}
 	public String getPassword() {
 		return password;
 	}
@@ -114,8 +116,17 @@ public class User {
 	
 	public void addChallenge(Challenge c) {
 		this.challenges.add(c);
+		this.avancement.put(c.getId(),1);
 	}
 	
+	public Map<Integer, Integer> getAvancement() {
+		return avancement;
+	}
+
+	public void setAvancement(Map<Integer, Integer> avancement) {
+		this.avancement = avancement;
+	}
+
 	public void removeChallenge(Challenge c) {
 		this.challenges.remove(c);
 	}
@@ -123,7 +134,28 @@ public class User {
 	public Set<Challenge> getChallenges() {
 		return this.challenges;
 	}
-	
+	public String toString() {
+		String jsons ="{\n";
+		jsons+= "\nlogin : "+login;
+		jsons+= "\npassword : "+password;
+		jsons+= "\nlastname : "+lastname;
+		jsons+= "\nfirstname : "+firstname;
+		jsons+= "\nisAdmin : "+isAdmin;
+		jsons+= "\ninscrit dans les challenges : [";
+	    for (Challenge c : challenges) {
+	    	jsons+= c.getId()+",";
+	    }
+	    jsons+= "]";
+	    jsons+= "\navancement : [";
+	    for (Map.Entry mapentry : avancement.entrySet()) {
+	           System.out.println("clé: "+mapentry.getKey() 
+	                              + " | valeur: " + mapentry.getValue());
+	           
+	           jsons+=mapentry.getKey()+"->"+mapentry.getValue()+" ";
+	        }
+	    jsons+= "]";
+		return jsons+"\n}";
+	}
 	@Override
 	public int hashCode() {
 		return 0;
