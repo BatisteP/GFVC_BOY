@@ -29,7 +29,9 @@ public class MobileApp {
         return "hello";
     }
 	
-	@Path("/{login}/challenge-{id}-{modededeplacement}")
+	
+	@GET
+	@Path("/{login}/challenge-{id}-{modedeplacement}")
 	@Produces("text/json")
 	public String progress (@PathParam("login") String login,@PathParam("id") String id,@PathParam("modedeplacement") String modedeplacement,@QueryParam("newetape") String newetape) throws SecurityException, IllegalStateException, NotSupportedException, SystemException, NamingException, RollbackException, HeuristicMixedException, HeuristicRollbackException{
 		
